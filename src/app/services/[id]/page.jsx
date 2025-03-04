@@ -36,7 +36,7 @@ export default function ServiceDetailPage({ params }) {
         "Ensuring data protection and security with advanced cybersecurity solutions.",
     },
   ];
-  const id = params.id;
+  const id = params?.id;
   const singleData = data.find((service) => service._id === id);
   return (
     <div className="space-y-5 w-11/12 mx-auto mt-10">
