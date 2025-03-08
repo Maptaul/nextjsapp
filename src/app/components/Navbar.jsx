@@ -4,26 +4,31 @@ import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const pathname = usePathname();
-  console.log(pathname, pathname.includes("/dashboard"));
+  console.log(pathname.includes("/dashboard"));
   if (pathname.includes("/dashboard")) {
     return (
-      <div>
-        <nav>
-          <ul className="flex justify-center space-x-4">
-            <Link href="/">
-              <li>Home</li>
-            </Link>
-            <Link href="/services">
-              <li>Service</li>
-            </Link>
-            <Link href="/about">
-              <li>About</li>
-            </Link>
-          </ul>
-        </nav>
-      </div>
+      <nav>
+        {/* 👇 Added proper list structure */}
+        <ul className="flex justify-center space-x-4">
+          {/* 👇 Wrapped Link INSIDE <li> (not the other way around) */}
+          <li className="p-2">
+            {" "}
+            {/* 👈 Added padding for clickable area */}
+            <Link href="/">Home</Link>
+          </li>
+          <li className="p-2">
+            <Link href="/services">Service</Link>
+          </li>
+          <li className="p-2">
+            <Link href="/about">About</Link>
+          </li>
+        </ul>
+      </nav>
     );
   } else {
-    return <></>;
+    return null;
+    {
+      /* 👈 Changed from empty fragment to null for better performance */
+    }
   }
 }

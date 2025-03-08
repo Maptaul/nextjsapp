@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function ServiceDetailPage({ params }) {
   const data = [
     {
@@ -38,12 +40,22 @@ export default function ServiceDetailPage({ params }) {
   ];
   const id = params?.id;
   const singleData = data.find((service) => service._id === id);
-  return (
-    <div className="space-y-5 w-11/12 mx-auto mt-10">
-      <h1>ServiceDetailPage</h1>
-      <p>Id: {id}</p>
-      <p>{singleData.service_name}</p>
-      <img className="w-40 h-40" src={singleData.service_image} alt="" />
-    </div>
-  );
+  if (singleData) {
+    return (
+      <div className="space-y-5 w-11/12 mx-auto mt-10">
+        <h1>ServiceDetailPage</h1>
+        <p>Id: {id}</p>
+        <p>{singleData.service_name}</p>
+        <img className="w-40 h-40" src={singleData.service_image} alt="" />
+      </div>
+    );
+  } else {
+    return (
+      <div className="container w-full h-screen flex flex-col justify-center items-center">
+        <h1>404</h1>
+        <p>Page not found</p>
+        <Link href="/">go back to home</Link>
+      </div>
+    );
+  }
 }
